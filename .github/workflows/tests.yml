@@ -24,7 +24,7 @@ jobs:
         distribution: 'adopt'
     - name: Setup Jython 2.7.2
       run: |
-        wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar jython.jar
+        wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar -O jython.jar
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
