@@ -28,9 +28,10 @@ jobs:
         wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar -O jython.jar
     - name: Setup Jython 2.7.2 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
-      uses: wei/wget@v1
-      with:
-        args: -O jython.jar https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar 
+      run: |
+        $source = 'https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar'
+        $destination = 'jython.jar'
+        Invoke-WebRequest -Uri $source -OutFile $destination
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
