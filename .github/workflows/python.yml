@@ -21,21 +21,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Setup Jython 2.7.2 (POSIX)
-      if: ${{ matrix.os != 'windows-latest' }}
-      run: |
-        wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar -O jython.jar
-    - name: Setup Jython 2.7.2 (Windows)
-      if: ${{ matrix.os == 'windows-latest' }}
-      run: |
-        $source = 'https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar'
-        $destination = 'jython.jar'
-        Invoke-WebRequest -Uri $source -OutFile $destination
     - name: Run tests
       run: |
-        java -version
         python --version
-        jython --version
-        ant -version
       env:
         PY_DEBUG: 1
