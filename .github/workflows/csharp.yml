@@ -24,16 +24,21 @@ jobs:
     - name: Setup IronPython 2.7.11 (Ubuntu)
       if: ${{ matrix.os == 'ubuntu-20.04' }}
       run: |
-        sudo apt install gnupg ca-certificates
-        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-        echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-        sudo apt update
-        sudo apt install mono-devel
-        sudo apt install libmono-system-numerics4.0-cil
+        pwd
+        echo ==================
+        ls -l
+        echo ==================
+        wget https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/ironpython_2.7.11.deb -O ironpython_2.7.11.deb
+        sudo dpkg -i ironpython_2.7.11.deb
     - name: Setup IronPython 2.7.11 (macOS)
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
-        brew install ironpython
+        pwd
+        echo ==================
+        ls -l
+        echo ==================
+        wget https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
+        sudo installer -pkg IronPython-2.7.11.pkg -target /
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
