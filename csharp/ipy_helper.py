@@ -30,7 +30,7 @@ def main():
     aa = ap.add_argument
     # aa('--example', help='Example argument')
     options, args = ap.parse_known_args()
-    cmd = [get_ipy(), '-X:FullFrames',  '-X:Debug ptest.py']
+    cmd = [get_ipy(), '-X:FullFrames',  '-X:Debug', 'ptest.py']
     cmd.extend(args)
     subprocess.check_call(cmd)
 
