@@ -54,4 +54,4 @@ jobs:
         ipy ptest.py org.parsers.python py
         ipy ptest.py --parser ParseModule org.parsers.python py
       env:
-        PY_DEBUG=1
+        PY_DEBUG: 1
