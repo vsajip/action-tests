@@ -64,6 +64,7 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
+        which mono
         which ipy
         ipy -V
         cd csharp

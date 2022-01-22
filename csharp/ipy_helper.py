@@ -17,7 +17,7 @@ def get_ipy():
     if sys.platform == 'darwin':
         return ['mono', '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe']
     elif os.name == 'nt':
-        return ['mono', 'c:/ProgramData/Chocolatey/bin/ipy.exe']
+        return ['c:/ProgramData/Chocolatey/bin/mono.exe', 'c:/ProgramData/Chocolatey/bin/ipy.exe']
     return ['ipy']
 
 def main():
@@ -35,6 +35,7 @@ def main():
     cmd = get_ipy()
     cmd.extend(['-X:FullFrames',  '-X:Debug'])
     cmd.extend(args)
+    print(' '.join(cmd))
     subprocess.check_call(cmd)
 
 if __name__ == '__main__':
