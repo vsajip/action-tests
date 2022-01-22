@@ -101,6 +101,7 @@ elif IS_DOTNET:
                     csharp_dump_node(stream, child, level + 1)
     except Exception as e:
         import traceback; traceback.print_exc()
+        raise
 
 else:
     def python_dump_node(stream, node, level=0):
