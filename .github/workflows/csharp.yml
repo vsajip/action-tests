@@ -54,7 +54,7 @@ jobs:
         sudo installer -pkg IronPython-2.7.11.pkg -target /
         brew install tree
         tree /Library/Frameworks/IronPython.framework/Versions/2.7.11/bin
-        tree /Library/Frameworks/IronPython.framework/Versions
+        tree /Library/Frameworks/Mono.framework/Versions
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
