@@ -63,8 +63,8 @@ elif IS_DOTNET:
             raise ValueError('No .dll found in %s' % sd)
         for dll in dlls:
             fn = os.path.join(sd, dll)
-            print('Adding reference to %s' % sd)
-            clr.AddReferenceToFile(sd)
+            print('Adding reference to %s (%s)' % (fn, dll))
+            clr.AddReferenceToFile(dll)
         # print('DLLs added.')
         from System.IO import FileStream, StreamWriter, FileMode
 
