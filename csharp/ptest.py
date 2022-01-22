@@ -54,15 +54,17 @@ elif IS_DOTNET:
         sd = os.path.join(sd[0], 'bin', 'Debug', 'netstandard2.1')
         if not os.path.isdir(sd):
             raise ValueError('Not a directory: %s' % sd)
-        print('Adding to sys.path: %s' % os.path.abspath(sd))
-        sys.path.append(os.path.abspath(sd))
+        sd = os.path.abspath(sd)
+        print('Adding to sys.path: %s' % sd)
+        sys.path.append(sd)
         import clr
         dlls = [f for f in os.listdir(sd) if f.endswith('.dll')]
         if not dlls:
             raise ValueError('No .dll found in %s' % sd)
         for dll in dlls:
-            print('Adding reference to %s' % dll)
-            clr.AddReference(dll)
+            fn = os.path.join(sd, dll)
+            print('Adding reference to %s' % sd)
+            clr.AddReferenceToFile(sd)
         # print('DLLs added.')
         from System.IO import FileStream, StreamWriter, FileMode
 
