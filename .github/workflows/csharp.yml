@@ -64,17 +64,13 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
-        export PATH="/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin:$PATH"
-        echo $PATH
-        which ipy
-        ipy -V
         cd csharp
         cd cs-pythonparser
         dotnet build
         cd ..
         echo "About to run scripts using IronPython"
-        ipy -X:FullFrames -X:Debug ptest.py org.parsers.python py
-        ipy -X:FullFrames -X:Debug ptest.py --parser ParseModule org.parsers.python py
+        python ipy_helper.py org.parsers.python py
+        python ipy_helper.py --parser ParseModule org.parsers.python py
       env:
         PY_DEBUG: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
