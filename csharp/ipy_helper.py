@@ -15,9 +15,8 @@ logger = logging.getLogger(__name__)
 
 def get_ipy():
     if sys.platform == 'darwin':
-        return 'ipy64'
-        # return '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe'
-    return 'ipy'
+        return ['mono', '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe']
+    return ['ipy']
 
 def main():
     fn = os.path.basename(__file__)
@@ -31,7 +30,8 @@ def main():
     aa = ap.add_argument
     # aa('--example', help='Example argument')
     options, args = ap.parse_known_args()
-    cmd = [get_ipy(), '-X:FullFrames',  '-X:Debug', 'ptest.py']
+    cmd = get_ipy()
+    cmd.extend(['-X:FullFrames',  '-X:Debug', 'ptest.py']
     cmd.extend(args)
     subprocess.check_call(cmd)
 
