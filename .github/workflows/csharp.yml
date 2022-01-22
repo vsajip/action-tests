@@ -59,6 +59,7 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
+        which ipy
         ipy -V
         cd csharp
         cd cs-pythonparser
@@ -68,3 +69,4 @@ jobs:
         ipy -X:FullFrames -X:Debug ptest.py --parser ParseModule org.parsers.python py
       env:
         PY_DEBUG: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
