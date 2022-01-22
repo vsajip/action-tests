@@ -72,8 +72,8 @@ jobs:
         cd ..
         echo "About to run scripts using IronPython"
         python ipy_helper.py -V
-        python ipy_helper.py org.parsers.python py
-        python ipy_helper.py --parser ParseModule org.parsers.python py
+        python ipy_helper.py ptest.py org.parsers.python py
+        python ipy_helper.py ptest.py --parser ParseModule org.parsers.python py
       env:
         PY_DEBUG: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
