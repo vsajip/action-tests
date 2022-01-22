@@ -52,6 +52,7 @@ jobs:
         echo ==================
         wget -q https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
         sudo installer -pkg IronPython-2.7.11.pkg -target /
+        brew install tree
         tree /Library/Frameworks/IronPython.framework/Versions/2.7.11
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
