@@ -21,6 +21,19 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Create test directories (POSIX)
+      if: ${{ matrix.os != 'windows-latest' }}
+      run: |
+        mkdir -p ~/bin ~/logs
+    - name: Create test directories (Windows)
+      if: ${{ matrix.os == 'windows-latest' }}
+      run: |
+        $dirs = "${env:USERPROFILE}/bin", "${env:USERPROFILE}/logs"
+        foreach ($d in $dirs) {
+          if (!(test-path $d)) {
+            mkdir $d
+          }
+        }
     - name: Setup IronPython 2.7.11 (Ubuntu)
       if: ${{ matrix.os == 'ubuntu-20.04' }}
       run: |
