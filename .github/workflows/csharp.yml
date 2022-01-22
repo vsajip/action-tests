@@ -41,7 +41,7 @@ jobs:
         echo ==================
         ls -l
         echo ==================
-        wget https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/ironpython_2.7.11.deb -O ironpython_2.7.11.deb
+        wget -q https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/ironpython_2.7.11.deb -O ironpython_2.7.11.deb
         sudo dpkg -i ironpython_2.7.11.deb
     - name: Setup IronPython 2.7.11 (macOS)
       if: ${{ matrix.os == 'macos-latest' }}
@@ -50,7 +50,7 @@ jobs:
         echo ==================
         ls -l
         echo ==================
-        wget https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
+        wget -q https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
         sudo installer -pkg IronPython-2.7.11.pkg -target /
         export PATH="/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin:$PATH"
         echo $PATH
@@ -62,6 +62,7 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
+        echo $PATH
         which ipy
         ipy -V
         cd csharp
