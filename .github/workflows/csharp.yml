@@ -47,3 +47,11 @@ jobs:
       run: |
         dotnet --version
         ipy -V
+        cd csharp
+        cd cs-pythonparser
+        dotnet build
+        cd ..
+        ipy ptest.py org.parsers.python py
+        ipy ptest.py --parser ParseModule org.parsers.python py
+      env:
+        PY_DEBUG=1
