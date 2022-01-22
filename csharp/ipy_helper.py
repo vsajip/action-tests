@@ -17,7 +17,7 @@ def get_ipy():
     if sys.platform == 'darwin':
         return ['mono', '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe']
     elif os.name == 'nt':
-        return ['c:/ProgramData/Chocolatey/bin/mono.exe', 'c:/ProgramData/Chocolatey/bin/ipy.exe']
+        return ['c:/Program Files/Mono/bin/mono.exe', 'c:/ProgramData/Chocolatey/bin/ipy.exe']
     return ['ipy']
 
 def main():
