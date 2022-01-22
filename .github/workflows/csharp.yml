@@ -64,7 +64,8 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
-        which mono
+        dir /s c:\ProgramData\Chocolatey\bin
+        dir /s "c:\Program Files\"
         which ipy
         ipy -V
         cd csharp
