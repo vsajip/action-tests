@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, macos-latest, windows-latest]
+        os: [macos-latest]
         dotnet-version: ['5.0.x']
 
     steps:
@@ -53,7 +53,8 @@ jobs:
         wget -q https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
         sudo installer -pkg IronPython-2.7.11.pkg -target /
         brew install tree
-        tree /Library/Frameworks/IronPython.framework/Versions/2.7.11
+        tree /Library/Frameworks/IronPython.framework/Versions/2.7.11/bin
+        tree /Library/Frameworks/IronPython.framework/Versions
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
@@ -66,6 +67,8 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
+        which ipy
+        ipy -V
         cd csharp
         cd cs-pythonparser
         dotnet build
