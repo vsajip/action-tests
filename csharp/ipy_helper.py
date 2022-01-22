@@ -15,7 +15,8 @@ logger = logging.getLogger(__name__)
 
 def get_ipy():
     if sys.platform == 'darwin':
-        return '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe'
+        return 'ipy64'
+        # return '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe'
     return 'ipy'
 
 def main():
