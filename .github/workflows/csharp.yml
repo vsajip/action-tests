@@ -52,7 +52,6 @@ jobs:
         echo ==================
         wget https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython-2.7.11.pkg -O IronPython-2.7.11.pkg
         sudo installer -pkg IronPython-2.7.11.pkg -target /
-        find / -name ipy -print
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
@@ -66,7 +65,7 @@ jobs:
         cd cs-pythonparser
         dotnet build
         cd ..
-        echo About to run scripts using IronPython
+        echo "About to run scripts using IronPython"
         ipy -X:FullFrames -X:Debug ptest.py org.parsers.python py
         ipy -X:FullFrames -X:Debug ptest.py --parser ParseModule org.parsers.python py
       env:
