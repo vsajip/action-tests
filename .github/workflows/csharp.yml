@@ -64,8 +64,7 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
-        dir -Recurse c:\ProgramData\Chocolatey\bin
-        dir -Recurse "c:\Program Files\"
+        dir -Recurse "c:\Program Files\Mono"
         which ipy
         ipy -V
         cd csharp
