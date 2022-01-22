@@ -74,6 +74,7 @@ jobs:
         dotnet build
         cd ..
         echo "About to run scripts using IronPython"
+        python ipy_helper.py -V
         python ipy_helper.py org.parsers.python py
         python ipy_helper.py --parser ParseModule org.parsers.python py
       env:
