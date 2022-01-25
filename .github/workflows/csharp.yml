@@ -66,14 +66,12 @@ jobs:
     - name: Run tests
       run: |
         dotnet --version
-        which ipy
-        ipy -V
+        python ipy_helper.py -V
         cd csharp
         cd cs-pythonparser
         dotnet build
         cd ..
         echo "About to run scripts using IronPython"
-        python ipy_helper.py -V
         python ipy_helper.py ptest.py org.parsers.python py
         python ipy_helper.py ptest.py --parser ParseModule org.parsers.python py
       env:
