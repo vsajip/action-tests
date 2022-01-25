@@ -55,8 +55,10 @@ jobs:
     - name: Setup IronPython 2.7.11 (Windows)
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
-        choco install --no-progress mono
-        choco install --no-progress ironpython --version=2.7.11
+        $source = 'https://github.com/IronLanguages/ironpython2/releases/download/ipy-2.7.11/IronPython.2.7.11.zip'
+        $destination = "${env:USERPROFILE}/bin/IronPython.2.7.11.zip"
+        Invoke-WebRequest -Uri $source -OutFile $destination
+        Expand-Archive -Force $destination ${env:USERPROFILE}/bin/IronPython-2.7.11
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:

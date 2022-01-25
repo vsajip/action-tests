@@ -17,7 +17,8 @@ def get_ipy():
     if sys.platform == 'darwin':
         return ['mono', '/Library/Frameworks/IronPython.framework/Versions/2.7.11/bin/ipy.exe']
     elif os.name == 'nt':
-        return ['c:/Program Files/Mono/bin/mono.exe', 'c:/ProgramData/Chocolatey/bin/ipy.exe']
+        loc = os.path.expanduser('~/bin/IronPython-2.7.11/netcoreapp3.1')
+        return ['dotnet', os.path.join(loc, 'ipy.dll']
     return ['ipy']
 
 def main():
