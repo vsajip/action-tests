@@ -15,8 +15,9 @@ DEBUGGING = 'PY_DEBUG' in os.environ
 
 logger = logging.getLogger(__name__)
 
-def tod():
-    return datetime.datetime.now().strftime('%H:%M')
+def message(s):
+    tod = datetime.datetime.now().strftime('%H:%M')
+    print('%s %s' % (tod, s))
 
 def main():
     fn = os.path.basename(__file__)
@@ -31,33 +32,35 @@ def main():
     # aa('input', metavar='INPUT', help='File to process')
     # aa('--flag', '-f', value=False, action='store_true', help='Option')
     options = ap.parse_args()
-    print('%s Running console executable ...' % tod())
+    message('Running console executable ...')
     cmd = [os.path.join('test', 'test.exe'), '10']
     p = subprocess.Popen(cmd)
-    print('%s Waiting 5 secs ...' % tod())
+    message('Waiting 5 secs ...')
     time.sleep(5)
     rc = p.poll()
     if rc is not None:
+        message('Console executable status: %s' % rc)
         raise ValueError('Console executable is not running!')
-    print('%s Trying to stop console executable ...' % tod())
+    message('Trying to stop console executable ...')
     p.kill()
-    print('%s Waiting 500 msecs ...' % tod())
+    message('Waiting 500 msecs ...')
     time.sleep(0.5)
     rc = p.poll()
     if rc is None:
+        message('Console executable is still running')
         raise ValueError('Failed to stop console executable')
-    print('%s Console executable stopped with return code: %s' % (tod(), rc))
-    print('%s Running windowed executable ...' % tod())
+    message('Console executable stopped with return code: %s' % rc)
+    message('%s Running windowed executable ...')
     cmd = [os.path.join('test', 'testw.exe')]
     p = subprocess.Popen(cmd)
     time.sleep(5)
-    print('%s Trying to stop windowed executable ...' % tod())
+    message('Trying to stop windowed executable ...')
     p.kill()
     time.sleep(0.5)
     rc = p.poll()
     if rc is None:
         raise ValueError('Failed to stop windowed executable')
-    print('%s Windowed executable stopped with return code: %s' % (tod(), rc))
+    message('Windowed executable stopped with return code: %s' % rc)
 
 
 if __name__ == '__main__':
