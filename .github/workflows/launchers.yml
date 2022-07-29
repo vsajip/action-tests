@@ -1,4 +1,4 @@
-name: Python
+name: Launchers
 
 on:
   push:
@@ -29,5 +29,6 @@ jobs:
         python -m venv env
         env\bin\pip install distlib
         dir /s env\*.exe
+      shell: cmd
       env:
         PY_DEBUG: 1
