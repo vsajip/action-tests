@@ -34,9 +34,23 @@ def main():
     time.sleep(5)
     print('Trying to stop console executable ...')
     p.kill()
-    time.sleep(1)
+    time.sleep(0.5)
     rc = p.poll()
-    print('Child return code: %s' % rc)
+    if rc is None:
+        raise ValueError('Failed to stop console executable')
+    print('Console executable stopped with return code: %s' % rc)
+    print('Running windowed executable ...')
+    cmd = [os.path.join('test', 'testw.exe')]
+    p = subprocess.Popen(cmd)
+    time.sleep(5)
+    print('Trying to stop windowed executable ...')
+    p.kill()
+    time.sleep(0.5)
+    rc = p.poll()
+    if rc is None:
+        raise ValueError('Failed to stop windowed executable')
+    print('Windowed executable stopped with return code: %s' % rc)
+
 
 if __name__ == '__main__':
     try:
