@@ -29,7 +29,7 @@ def main():
     # aa('--flag', '-f', value=False, action='store_true', help='Option')
     options = ap.parse_args()
     print('Running console executable ...')
-    cmd = [os.path.join('test'. 'test.exe'), '10')
+    cmd = [os.path.join('test', 'test.exe'), '10')
     p = subprocess.Popen(cmd)
     time.sleep(5)
     print('Trying to stop console executable ...')
