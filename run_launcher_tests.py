@@ -4,6 +4,7 @@
 # Copyright (C) 2022 Vinay Sajip
 #
 import argparse
+import datetime
 import logging
 import os
 import subprocess
@@ -14,6 +15,8 @@ DEBUGGING = 'PY_DEBUG' in os.environ
 
 logger = logging.getLogger(__name__)
 
+def tod():
+    return datetime.datetime.now().strftime('%H:%M')
 
 def main():
     fn = os.path.basename(__file__)
@@ -28,28 +31,33 @@ def main():
     # aa('input', metavar='INPUT', help='File to process')
     # aa('--flag', '-f', value=False, action='store_true', help='Option')
     options = ap.parse_args()
-    print('Running console executable ...')
+    print('%s Running console executable ...' % tod())
     cmd = [os.path.join('test', 'test.exe'), '10']
     p = subprocess.Popen(cmd)
+    print('%s Waiting 5 secs ...' % tod())
     time.sleep(5)
-    print('Trying to stop console executable ...')
+    rc = p.poll()
+    if rc is not None:
+        raise ValueError('Console executable is not running!')
+    print('%s Trying to stop console executable ...' % tod())
     p.kill()
+    print('%s Waiting 500 msecs ...' % tod())
     time.sleep(0.5)
     rc = p.poll()
     if rc is None:
         raise ValueError('Failed to stop console executable')
-    print('Console executable stopped with return code: %s' % rc)
-    print('Running windowed executable ...')
+    print('%s Console executable stopped with return code: %s' % (tod(), rc))
+    print('%s Running windowed executable ...' % tod())
     cmd = [os.path.join('test', 'testw.exe')]
     p = subprocess.Popen(cmd)
     time.sleep(5)
-    print('Trying to stop windowed executable ...')
+    print('%s Trying to stop windowed executable ...' % tod())
     p.kill()
     time.sleep(0.5)
     rc = p.poll()
     if rc is None:
         raise ValueError('Failed to stop windowed executable')
-    print('Windowed executable stopped with return code: %s' % rc)
+    print('%s Windowed executable stopped with return code: %s' % (tod(), rc))
 
 
 if __name__ == '__main__':
