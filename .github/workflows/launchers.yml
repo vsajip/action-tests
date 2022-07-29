@@ -28,9 +28,13 @@ jobs:
         python -c "import sys; print(sys.executable)"
         python -m venv env
         env\Scripts\pip install distlib==0.3.5
-        dir *.py
         python make_launcher_tests.py
-        dir /s *.exe
+      shell: cmd
+      env:
+        PY_DEBUG: 1
+    - name: Run tests
+      run: |
+        python run_launcher_tests.py
       shell: cmd
       env:
         PY_DEBUG: 1
