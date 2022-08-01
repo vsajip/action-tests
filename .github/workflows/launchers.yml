@@ -34,7 +34,7 @@ jobs:
         python -m venv env
         env\Scripts\pip install distlib==0.3.5 psutil
         python make_launcher_tests.py
-        python make_launcher_tests.py -s "" -p %%pythonLocation%%\python.exe
+        python make_launcher_tests.py -s "" -p %pythonLocation%\python.exe
         dir test
       shell: cmd
       env:
