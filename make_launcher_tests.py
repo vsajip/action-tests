@@ -74,6 +74,10 @@ def main():
         zf.writestr(zinfo, wscript_data)
     # hard to escape double quotes in command line, so replace
     # single quotes with double
+    if options.python == 'ENV_PYTHON':
+        d = os.environ['pythonLocation']
+        assert d
+        options.python = os.path.join(d, 'python.exe')
     options.shebang = options.python.replace('\'', '"')
     shebang = ('#!%s\n' % options.shebang).encode('utf-8')
     wshebang = ('#!%s\n' % options.shebang.replace('python.exe', 'pythonw.exe')).encode('utf-8')
