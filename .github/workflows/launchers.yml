@@ -41,8 +41,8 @@ jobs:
         PY_DEBUG: 1
     - name: Run tests using Python
       run: |
-        python run_launcher_tests.py
-        python run_launcher_tests.py -s v
+        env\Scripts\python run_launcher_tests.py
+        env\Scripts\python run_launcher_tests.py -s v
       shell: cmd
       env:
         PY_DEBUG: 1
