@@ -34,7 +34,8 @@ def test_executable(options, cmd, descr):
     time.sleep(0.5)
     pp = psutil.Process(p.pid)
     message('Process tree:')
-    descendants = dump_process_tree(pp, [])
+    descendants = []
+    dump_process_tree(pp, descendants)
     # message('Descendants for %s: %s' % (descr, [(pr.pid, pr.cmdline()) for pr in descendants]))
     # assert len(descendants) == 1
     # kid = descendants[0]
