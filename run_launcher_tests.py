@@ -49,10 +49,12 @@ def test_executable(options, cmd, descr):
     if rc is None:
         message('The %s is still running' % descr)
         raise ValueError('Failed to stop %s' % descr)
-    try:
-        pass # kid.status()
-    except psutil.NoSuchProcess:
-        pass
+    for descendant in descendants:
+        try:
+            s = descendant.status()
+            message('Descendant status: %s' % descendant)
+        except psutil.NoSuchProcess:
+            pass
     message('%s stopped with return code: %s' % (descr, rc))
 
 def main():
