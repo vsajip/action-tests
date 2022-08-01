@@ -42,7 +42,7 @@ def test_executable(options, cmd, descr):
     message('Launcher for %s: %s' % (descr, pp))
     message('Waiting %s secs ...' % options.delay)
     time.sleep(options.delay - 0.5)
-    message('Trying to stop %s ...' % descr)
+    message('Trying to stop %s with pid %s ...' % (descr, p.pid))
     p.kill()
     message('Waiting 500 msecs ...')
     time.sleep(0.5)
@@ -53,7 +53,7 @@ def test_executable(options, cmd, descr):
     for descendant in descendants:
         try:
             s = descendant.status()
-            message('Descendant status: %s' % descendant)
+            message('Descendant remaining: %s' % descendant)
         except psutil.NoSuchProcess:
             pass
     message('%s stopped with return code: %s' % (descr, rc))
