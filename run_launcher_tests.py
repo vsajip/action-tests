@@ -36,10 +36,6 @@ def test_executable(options, cmd, descr):
     message('Process tree:')
     descendants = []
     dump_process_tree(pp, descendants)
-    # message('Descendants for %s: %s' % (descr, [(pr.pid, pr.cmdline()) for pr in descendants]))
-    # assert len(descendants) == 1
-    # kid = descendants[0]
-    message('Launcher for %s: %s' % (descr, pp))
     message('Waiting %s secs ...' % options.delay)
     time.sleep(options.delay - 0.5)
     message('Trying to stop %s with pid %s ...' % (descr, p.pid))
