@@ -56,7 +56,7 @@ def main():
     adhf = argparse.ArgumentDefaultsHelpFormatter
     parser = argparse.ArgumentParser(formatter_class=adhf, prog=fn)
     parser.add_argument('-p', '--python', default=PYTHON_LOCATION,
-                        help='Use this in the shebang (must contain the text "python.exe"')
+                        help='Use this in the shebang - must contain the text "python.exe"')
     parser.add_argument('-o', '--outdir', default='test',
                         help='Write files here')
     parser.add_argument('-s', '--suffix', default='v',
