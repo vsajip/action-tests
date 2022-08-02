@@ -19,12 +19,12 @@ logger = logging.getLogger(__name__)
 
 def message(s):
     tod = datetime.datetime.now().strftime('%H:%M:%S')
-    print('%s %s' % (tod, s))
+    print('%s %s' % (tod, s), file=sys.stderr)
 
 def dump_process_tree(pp, descendants, level=1):
     descendants.append(pp)
     indent = level * '  '
-    print('%s%s %s' % (indent, pp.pid, pp.cmdline()))
+    print('%s%s %s' % (indent, pp.pid, pp.cmdline()), file=sys.stderr)
     for kid in pp.children():
         dump_process_tree(kid, descendants, level + 1)
 
