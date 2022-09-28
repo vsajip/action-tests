@@ -59,7 +59,7 @@ jobs:
         PY_DEBUG: 1
     - name: Run tests using Python - windowed, venv
       run: |
-        env\Scripts\python run_launcher_tests.py -w
+        env\Scripts\python run_launcher_tests.py -w -k 750
       shell: cmd
       env:
         PY_DEBUG: 1

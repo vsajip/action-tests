@@ -37,11 +37,11 @@ def test_executable(options, cmd, descr):
     descendants = []
     dump_process_tree(pp, descendants)
     message('Waiting %s secs ...' % options.delay)
-    time.sleep(options.delay - 0.5)
+    time.sleep(options.delay)
     message('Trying to stop %s with pid %s ...' % (descr, p.pid))
     p.kill()
-    message('Waiting 500 msecs ...')
-    time.sleep(0.5)
+    message('Waiting %s msecs ...' % options.kill_delay)
+    time.sleep(options.kill_delay / 1000.0)
     rc = p.poll()
     if rc is None:
         message('The %s is still running' % descr)
@@ -70,6 +70,7 @@ def main():
     aa = ap.add_argument
     # aa('input', metavar='INPUT', help='File to process')
     aa('--delay', '-d', type=int, default=5, help='Delay before trying to stop')
+    aa('--kill-delay', '-k', type=int, default=500, help='Delay after trying to kill child processes')
     aa('--console', '-c', default=False, action='store_true',
        help='Test console executable only')
     aa('--windowed', '-w', default=False, action='store_true',
