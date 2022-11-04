@@ -3,6 +3,12 @@ name: Launchers
 on:
   push:
     branches: [ main ]
+    paths:
+        - '!.github/workflows/*.yml'
+        - '.github/workflows/winonly.yml'
+        - 'make_launcher_tests.py'
+        - 'run_launcher_tests.py'
+
   pull_request:
     branches: [ main ]
 

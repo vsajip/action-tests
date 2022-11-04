@@ -3,6 +3,11 @@ name: C#
 on:
   push:
     branches: [ main ]
+    paths:
+        - '!.github/workflows/*.yml'
+        - '.github/workflows/csharp.yml'
+        - 'csharp/**'
+
   pull_request:
     branches: [ main ]
 
@@ -16,7 +21,7 @@ jobs:
         dotnet-version: ['5.0.x']
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
