@@ -40,15 +40,22 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: 3.9
+    - name: Install PCRE
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      #uses: ConorMacBride/install-package@v1
+      #with:
+        #apt: 'libpcre3-dev'
+      run: !
+        sudo apt update && sudo apt install libpcre3-dev
+    - name: Setup Rust
+      uses: moonrepo/setup-rust@v1
+      with:
+        channel: '1.84.0'
     - name: Run tests
       run: |
         java -jar jython.jar --version
         python --version
         ant -version
+        rustc --version
       env:
         PY_DEBUG: 1
-    - name: Install PCRE
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      uses: ConorMacBride/install-package@v1
-      with:
-        apt: 'libpcre3-dev'
