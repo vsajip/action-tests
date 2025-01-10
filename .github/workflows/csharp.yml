@@ -21,7 +21,7 @@ jobs:
         dotnet-version: ['5.0.x']
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
@@ -70,7 +70,7 @@ jobs:
         Invoke-WebRequest -Uri $source -OutFile $destination
         Expand-Archive -Force $destination ${env:USERPROFILE}/bin/IronPython-2.7.11
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: 3.9
     - name: Run tests

@@ -20,7 +20,7 @@ jobs:
         java-version: ['8', '11']
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
@@ -37,7 +37,7 @@ jobs:
         $destination = 'jython.jar'
         Invoke-WebRequest -Uri $source -OutFile $destination
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: 3.9
     - name: Run tests
@@ -47,3 +47,8 @@ jobs:
         ant -version
       env:
         PY_DEBUG: 1
+    - name: Install PCRE
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      uses: ConorMacBride/install-package@v1
+      with:
+        apt: 'libpcre3-dev'
